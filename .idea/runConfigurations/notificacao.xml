@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="pedidos-api" type="Application" factoryName="Application">
+  <configuration default="false" name="notificacao" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="21" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-    <option name="MAIN_CLASS_NAME" value="br.com.scherer.pedidos.api.Startup" />
-    <module name="pedidos-api" />
+    <option name="MAIN_CLASS_NAME" value="br.com.scherer.pedidos.notificacao.NotificacaoApplication" />
+    <module name="notificacao" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
