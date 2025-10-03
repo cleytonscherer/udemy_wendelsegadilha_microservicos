@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="pedidos-api" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="br.com.scherer.pedidos.api.Startup" />
+    <module name="pedidos-api" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
