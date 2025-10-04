@@ -1,4 +1,4 @@
-package br.com.scherer.pedidos.notificacao.enums;
+package br.com.scherer.pedidos.api.entity.enums;
 
 public enum StatusPedido {
 

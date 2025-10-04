@@ -1,6 +1,6 @@
 package br.com.scherer.pedidos.api.entity;
 
-import br.com.scherer.pedidos.api.enums.StatusPedido;
+import br.com.scherer.pedidos.api.entity.enums.StatusPedido;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;

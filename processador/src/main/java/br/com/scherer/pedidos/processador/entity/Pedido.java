@@ -1,7 +1,9 @@
-package br.com.scherer.pedidos.notificacao.entity;
+package br.com.scherer.pedidos.processador.entity;
 
-import br.com.scherer.pedidos.notificacao.entity.enums.StatusPedido;
+
+import br.com.scherer.pedidos.processador.entity.enums.StatusPedido;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,20 +16,29 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "pedido")
 public class Pedido {
 
+    @Id
     private UUID    id = UUID.randomUUID();
 
     private String  cliente;
 
+    @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itens = new ArrayList<>();
 
+    @Column(name = "valor_total")
     private Double  valorTotal;
 
+    @Column(name = "email_notificao")
     private String  emailNotificacao;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status_pedido")
     private StatusPedido statusPedido = StatusPedido.EM_PROCESSAMENTO;
 
+    @Column(name = "data_hora")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime   dataHora = LocalDateTime.now();
 
