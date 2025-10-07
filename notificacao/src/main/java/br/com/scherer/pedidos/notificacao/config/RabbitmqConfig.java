@@ -15,6 +15,9 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Configuration
 public class RabbitmqConfig {
 
@@ -24,19 +27,42 @@ public class RabbitmqConfig {
     @Value("${rabbitmq.queue.name}")
     private String queueName;
 
+    @Value("${rabbitmq.exchange.dlx.name}")
+    private String exchangeDlxName;
+
+    @Value("${rabbitmq.queue.dlq.name}")
+    private String queueDlqName;
+
     @Bean
-    public FanoutExchange pediosExchange() {
+    public FanoutExchange notificacaoExchange() {
         return new FanoutExchange(exchangeName);
     }
 
     @Bean
+    public FanoutExchange notificacaoDlxExchange() {
+        return new FanoutExchange(exchangeDlxName);
+    }
+
+    @Bean
     public Queue notificacaoQueue() {
-        return new Queue(queueName);
+        Map<String, Object> argumentos = new HashMap<>();
+        argumentos.put("x-dead-letter-exchange", exchangeDlxName);
+        return new Queue(queueName, true, false, false, argumentos);
+    }
+
+    @Bean
+    public Queue notificacaoDlqQueue() {
+        return new Queue(queueDlqName);
     }
 
     @Bean
     public Binding binding() {
-        return BindingBuilder.bind(notificacaoQueue()).to(pediosExchange());
+        return BindingBuilder.bind(notificacaoQueue()).to(notificacaoExchange());
+    }
+
+    @Bean
+    public Binding bindingDlq() {
+        return BindingBuilder.bind(notificacaoDlqQueue()).to(notificacaoDlxExchange());
     }
 
     @Bean

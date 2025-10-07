@@ -25,7 +25,7 @@ public class RabbitmqConfig {
     private String queueName;
 
     @Bean
-    public FanoutExchange pediosExchange() {
+    public FanoutExchange pedidosExchange() {
         return new FanoutExchange(exchangeName);
     }
 
@@ -36,7 +36,7 @@ public class RabbitmqConfig {
 
     @Bean
     public Binding binding() {
-        return BindingBuilder.bind(processadorQueue()).to(pediosExchange());
+        return BindingBuilder.bind(processadorQueue()).to(pedidosExchange());
     }
 
     @Bean
